@@ -7,7 +7,6 @@ import FastClick from 'fastclick'
 import './common/stylus/index.styl'
 Vue.config.productionTip = false
 FastClick.attach(document.body);
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

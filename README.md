@@ -9,3 +9,6 @@ webpack  base  可以配置别名
 安装 babel-polyfill  给es6 的api  做个转义（提高兼容度）
 npm install babel-polyfill
 
+import MHeader from 'components/m-header/m-header'
+引入组件
+正确写法 ：MHeader  错误写法 Mheader
