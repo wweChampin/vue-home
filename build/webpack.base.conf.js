@@ -29,7 +29,7 @@ module.exports = {
             'components': resolve('src/components'),
             'common': resolve('src/common'),
             'base': resolve('src/base'),
-            'api': resolve('./api')
+            'api': resolve('src/api')
         }
     },
     module: {
