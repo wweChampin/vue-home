@@ -26,3 +26,5 @@ export import 后面 可接多个  export default  后面  只能接一个  expo
 组件可不用写name   引入的时候 按照规则    如 import  Listview from ''  ==>  <listview></listview>  或者  import ListView from '' ==> <list-view></list-view>
 
 使用到相关标签语法的使用就不能使用单引号，双引号 使用反引号
+
+vuex
