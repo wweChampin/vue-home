@@ -28,3 +28,7 @@ export import 后面 可接多个  export default  后面  只能接一个  expo
 使用到相关标签语法的使用就不能使用单引号，双引号 使用反引号
 
 vuex
+
+state => state.singer  的意思就是  function state(){   return state.singer     }
+
+... 是扩展运算符
