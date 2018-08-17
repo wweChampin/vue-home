@@ -21,6 +21,8 @@ export function getData(el, name, val) {
   return el.getAttribute(prefix + name)
 }
 
+
+//浏览器能力检测
 let elementStyle = document.createElement('div').style
 
 let vendor = (() => {

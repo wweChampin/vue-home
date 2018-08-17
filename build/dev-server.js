@@ -64,6 +64,25 @@ apiRoutes.get('/lyric', function (req, res) {
   })
 })
 
+
+app.get('/music', function (req, res) {//这里的路径是给前端发送请求的url
+    const url = 'https://c.y.qq.com/base/fcgi-bin/fcg_music_express_mobile3.fcg'
+    // axios发送get请求，可以自己配置config
+    axios.get(url, {
+        headers: {
+            referer: 'https://c.y.qq.com/',
+            host: 'c.y.qq.com'
+        },
+        //  params是即将与请求一起发送的url参数，无格式对象/URLSearchParams对象
+        params: req.query
+    }).then((response) => {
+        res.json(response.data)
+    }).catch((e) => {
+        console.log(e)
+    })
+})
+
+
 app.use('/api', apiRoutes)
 
 var compiler = webpack(webpackConfig)

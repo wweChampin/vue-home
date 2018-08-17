@@ -7,7 +7,7 @@
 <script type="text/ecmascript-6">
     import MusicList from 'components/music-list/music-list'
     import {mapGetters} from  'vuex'
-    import {getSingerDetial} from 'api/singer'
+    import {getSingerDetial, getMusic} from 'api/singer'
     import {ERR_OK} from 'api/config'
     import {createSong} from 'common/js/song'
 
@@ -55,6 +55,7 @@
                 })
                 return ret
             }
+
         },
         components: {
             MusicList

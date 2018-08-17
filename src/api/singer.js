@@ -39,3 +39,25 @@ export function getSingerDetial(singerId) {
 
     return jsonp(url, data, options)
 }
+
+export function getMusic(songmid) {
+    const url = '/api/music'
+    const data = Object.assign({}, commonParams, {
+        songmid: songmid,
+        filename: 'C400' + songmid + '.m4a',
+        guid: 3075383412,  //注意:guid是会变化的,以自己抓取的实际值为准
+        platform: 'yqq',
+        loginUin: 0,
+        hostUin: 0,
+        needNewCode: 0,
+        cid: 205361747,
+        uid: 0,
+        g_tk: 1928111839
+    })
+    return axios.get(url, {
+        params: data
+    }).then((res) => {
+        return Promise.resolve(res.data)
+    })
+}
+

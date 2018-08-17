@@ -10,17 +10,28 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+        "api/music": {
+            target: "https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg",
+            bpass: function (req, res, proxyOptions) {
+                req.headers.referer = 'http://c.y.qq.com';
+                req.headers.host = 'c.y.qq.com';
+            },
+            pathRewrite: {
+                "^/api/getDiscList":""
+            }
+        }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: false,
+    autoOpenBrowser: true,
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */
