@@ -34,3 +34,6 @@ state => state.singer  的意思就是  function state(){   return state.singer 
 create-keyframe-animation :  js写的css3动画 插件
 
 ... 是扩展运算符
+
+
+@click.stop=""  阻止向父元素冒泡

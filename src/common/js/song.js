@@ -20,7 +20,7 @@ export function createSong(musicData,songVkey) {
         album: musicData.albumname,
         duration: musicData.interval,
         image: `https://y.gtimg.cn/music/photo_new/T002R300x300M000${musicData.albummid}.jpg?max_age=2592000`,
-        url: `F:/webstorm/webstormProject/vue-home/src/assets/gaobaiqiqiu.mp3`
+        url: `/static/gaobaiqiqiu.mp3`
         // url: `http://dl.stream.qqmusic.qq.com/C400${musicData.songmid}.m4a?vkey=${songVkey}&guid=3075383412&uin=0&fromtag=66`
     })
 }
