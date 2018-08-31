@@ -30,7 +30,7 @@
                     <div class="progress-wrapper">
                         <span class="time time-l">{{format(currentTime)}}</span>
                         <div class="progress-bar-wrapper">
-                            <progress-bar :percent="percent" @percentChange="onProgressBarChange"></progress-bar>
+                            <progress-bar :percent="percent"  @percentChange="onProgressBarChange"></progress-bar>
                         </div>
                         <span class="time time-r">{{format(currentSong.duration)}}</span>
                     </div>
@@ -64,8 +64,10 @@
                     <p class="desc" v-html="currentSong.singer"></p>
                 </div>
                 <div class="control">
-                    <!--阻止冒泡-->
-                    <i @click.stop="togglePlaying" :class="miniIcon"></i>
+                    <progress-circle :radius="radius" :percent="percent">
+                        <!--阻止冒泡-->
+                        <i @click.stop="togglePlaying" class="icon-mini" :class="miniIcon"></i>
+                    </progress-circle>
                 </div>
                 <div class="control" @click.stop="showPlaylist">
                     <i class="icon-playlist"></i>
@@ -80,6 +82,8 @@
     import {mapGetters, mapMutations} from 'vuex'
     import animations from 'create-keyframe-animation'
     import {prefixStyle} from 'common/js/dom'
+    import ProgressBar from 'base/progress-bar/progress-bar'
+    import ProgressCircle from 'base/progress-circle/progress-circle'
 
     const transform = prefixStyle('transform')
     const transitionDuration = prefixStyle('transitionDuration')
@@ -88,7 +92,8 @@
         data() {
             return {
                 songReady: false,
-                currentTime: 0
+                currentTime: 0,
+                radius: 32
             }
         },
         computed: {
@@ -103,6 +108,9 @@
             },
             disableCls() {
                 return this.songReady ? '' : 'disable'
+            },
+            percent() {
+                return this.currentTime / this.currentSong.duration
             },
             ...mapGetters([
                 'fullScreen',
@@ -219,6 +227,13 @@
                 const second = this._pad(interval % 60)
                 return `${minute}:${second}`
             },
+            onProgressBarChange(percent) {
+                const currentTime = this.currentSong.duration * percent
+                this.$refs.audio.currentTime = currentTime
+                if (!this.playing) {
+                    this.togglePlaying()
+                }
+            },
             _pad(num, n = 2) {
                 let len = num.toString().length
                 while (len < n) {
@@ -248,23 +263,27 @@
                     setCurrentIndex: 'SET_CURRENT_INDEX'
                 })
             },
-            watch: {
-                currentSong() {
-                    //$nextTick 是在下次 DOM 更新循环结束之后执行延迟回调
-                    const audio = this.$refs.audio
-                    console.log(audio)
-                    this.$nextTick(() => {
-                        audio.play()
-                    })
-                },
-                playing(newPlaying) {
-                    const audio = this.$refs.audio
-                    this.$nextTick(() => {
-                        newPlaying ? audio.play() : audio.pause()
-                    })
-                }
+        watch: {
+            currentSong() {
+                //$nextTick 是在下次 DOM 更新循环结束之后执行延迟回调
+                const audio = this.$refs.audio
+                console.log(audio)
+                this.$nextTick(() => {
+                    audio.play()
+                })
+            },
+            playing(newPlaying) {
+                const audio = this.$refs.audio
+                this.$nextTick(() => {
+                    newPlaying ? audio.play() : audio.pause()
+                })
             }
+        },
+        components: {
+            ProgressBar,
+            ProgressCircle
         }
+    }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">

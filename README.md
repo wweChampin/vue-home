@@ -37,3 +37,6 @@ create-keyframe-animation :  js写的css3动画 插件
 
 
 @click.stop=""  阻止向父元素冒泡
+
+
+@touchstart.prevent=     //阻止浏览器的默认行为
