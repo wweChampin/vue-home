@@ -9,7 +9,9 @@ const state = {
     playlist: [],
     sequenceList: [], //播放顺序列表
     mode: playMode.sequence,
-    currentIndex: -1   //前进后退播放
+    currentIndex: -1,   //前进后退播放
+    disc: {},
+    topList: {}
 }
 
 export default state
