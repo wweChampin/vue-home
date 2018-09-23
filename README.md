@@ -40,3 +40,7 @@ create-keyframe-animation :  js写的css3动画 插件
 
 
 @touchstart.prevent=     //阻止浏览器的默认行为
+
+
+ps切图
+1.
